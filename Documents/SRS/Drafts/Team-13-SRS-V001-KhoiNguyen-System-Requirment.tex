@@ -1,0 +1,196 @@
+\Chapter {System Features}
+\section {Manual Control}
+\subsection {Description and Priority}
+
+The operator can control movement and speed over the robot. The operator needs to hold a
+directional button on the interface to move and release it to stop. To change speed, the operator can select the
+appropriate speed on the slider bar. It is essential that the functions are implemented in the system to
+move the robot to the starting point safely.
+
+The manual control implements requirement R0001, R0002, R0003, R0010
+
+\subsection {Stimulus/Response Sequences}
+
+The operator has to select manual mode to enter manual control. The buttons in the
+`Control' tab is then highlighted and is ready to use. The operator selects the appropriate speed by
+moving the slider bar before holding on a directional button. The host software will send a PC packet
+with the latest speed setting and the direction to the robot, moving the robot in the
+indicated direction.
+
+\subsection(Functional Requirements)
+
+The functional requirements of the manual control are as follows:
+\begin{itemize}
+	\item The GUI includes a `Control' tab that has directional buttons of moving
+	forward, moving backwards, rotating left and rotating right.
+	\item The `Control' tab also has a sliding bar that toggles the speed setting of 0,1,2,3 and 4. A speed
+	setting of 0 halts the movement of the robot while the speed setting of 4 set the fastest possible
+	speed for the robot.
+	\item If the robot enters a no-go zone , an emergency mechanism is triggered.
+\end{itemize}
+
+%The robot can enter external object even if under manual control%
+
+\section {Automatic Control}
+\subsection {Description and Priority}
+The host software comes with an automatic navigation algorithm. The robot has a light sensor to detect a mine
+object and an ultrasonic sensor for detecting an obstacle object. Each time a wall is encountered by
+the robot, the robot sends a request to the host software controller to record the position and decide on the best possible path to take. 
+The new generated path is then reflected on the GUI while the controller sends back the new path in a PC packet to the robot.
+
+The navigation system may start with either a new, partial or completed map. In any case, the map
+will contain information for the starting position of the robot,above-ground walls and buried walls
+
+The automatic path Finding navigation implements requirements  R0003, R0004, R0005, R0006,
+R0007, R0009, R0011.
+\subsection {Stimulus/Response Sequences}
+
+When the robot set on the starting position of the survey area , the operator has the option to switch to auto
+mode. This function disables manual controls while enabling the usage of the start and stop buttons.
+At this point, the operator can press the start the button which causes the host software to initialize the
+robot with the starting position coordinates and an intial generated path. The robot then follows this
+path till it encounters an object, making change to map and requesting a new path.
+
+\subsection {Functional Requirements}
+
+The GUI contains a start and a stop button for auto mode. If the user push a start button, a map is to be generated and be displayed on screen.
+
+
+\section{Graphical User Interface}
+\subsection {Description and Priority}
+The GUI serves as an interaction platform between the operator, the robot and the survey area.
+. All controls are made available to the operator through the GUI. The GUI also includes executing
+either automatic or manual robot control. In addition, the GUI provides a visual interpreta-
+tion of the area to the operator in the form of a writable XML map. As the robot
+makes its exploration, any objects encountered by the robot is displayed on the GUI. Lastly, the robot's status such as
+ oordinates, mode, etc is shown at the bottom of the GUI.
+
+The graphical user interface implements requirements R0007, R0008, R0009, R0010, R0011
+
+\subsection{Stimulus/Response Sequences}
+
+There are various components of the GUI that the operator can access:
+
+\begin{itemize}
+	\item The tool bar on top of the GUI - The operator has the ability to load map, save map and save as
+	map through the `File' header. If the `Robot' header is accessed, the operator could connect and disconnect
+	the robot. Under the `View' header, the grid and path taken by the robot can be toggled on and
+	off. As for the last header named `System', the operator has the option to exit the system.
+	\item The map interface and map editor - The map interface displays a loaded XML map illustrates the survey area. A map editor is provided for the operator to
+	add no-go zones and remove no-go zones. 
+	\item Manual mode - When the operator selects manual mode, he has access to the manual controls of
+	the robot under the `Control' tab. Manual controls include moving the robot and altering the speed
+	settings. 
+	\item  Auto mode - Auto mode is used when the robot is placed at a designated start position in the
+	survey area. When the operator selects auto mode, the manual functions are disabled. If the start button is
+	pressed, the robot will commence autonomous mapping. At any time the operator can click
+	on the stop button to halt the operation. 
+	\item Robot status -The status displays the robot's coordinates, the current
+	mode, the speed of movement, connection and battery strength.
+\end{itemize}
+\subsection{Functional Requirements}
+\begin{itemize}
+	\item Directional buttons and speed toggle are needed for the manual mode.
+	\item A start and a stop button are required for the auto mode.
+	\item A mode switch is required.
+	\item The GUI must support the functions of loading and saving a map.
+	\item No-Go zones can be edited.
+	\item The map must display the wall if the robot discovers one.
+	\item The robot status must be displayed.
+\end{itemize}
+
+\section{Use Cases}
+\subsection{Frequent Use Case}
+\paragraph{UC001: Operating the robot in manual mode}
+UC001 is associated with section 4.1 - Manual control as well as R0001.
+\begin{enumerate}
+	\item Use Case Name: Operating the robot in manual mode.
+	\begin{itemize}	
+		\item Description: The use case shows the operation of the robot under complete manipulation of the operator.
+		\item Goal: The objective of this use case is to ensure that the robot under the control of the
+	\end{itemize}
+	\item Flow of Events:The robot is placed in an arbitrary position outside of the survey area while
+	the operator is controlling the robot through Bluetooth.
+	\begin{itemize}
+		\item The operator switched the robot on and run the program. He then
+	executes the GUI, connecting the robot. Next, he selects the manual mode.
+		\item The control buttons are highlighted to imply that it is ready for use.
+	The operator selects the appropriate speed by using the slider bar.
+		\item The operator then holds down the directional key to move the robot till it reaches the destination		
+	\end{itemize}
+	\item Preconditions:
+	\begin{itemize}
+		\item	The robot batteries are charged and the robot is working properly.
+		\item	The GUI must be working
+		\item	The Bluetooth connection operates normally.
+		\item	An appropriate XML formatted map must be loaded. This map may be a new, partial or
+completed map.
+	\item	Postconditions:
+	\begin{itemize}
+		\item The robot reaches the destination safely.
+	\end {itemize}
+\end{enumerate}
+\paragraph {UC002: Operating the robot in auto mode}
+UC002 is associated with section 4.2 - Automatic control as well as R0003.
+\begin{enumerate}
+	\item Use Case Name: Operating the robot in automatic mode.
+	\begin{itemize}
+		\item Description: Under the supervision of the operator, the robot commences autonomous mapping from
+		a given starting point of the suvery area.
+		\item Goal: The end result of this use case is achieved when the robot has successfully mapped all the points in the area.
+	\end{itemize}
+	\item  Flow of Events: Using manual controls, the robot is moved onto the starting position of the
+survey area. Like UC001, the operator supervises the robot through the host machine.
+	\begin{itemize}
+		\item The operator ensures switched on the robot,executing the program. He then
+opens the host machine to run the GUI. The operator connects the robot through Bluetooth, selecting the automatic mode.
+		\item The start and stop buttons are then ready to use.
+		\item The operator then presses the start button to initiate autonomous search.
+		\item Without being interupted, the robot moves on its own till it finishes mapping. The actions are now determinied by the controller in the host machine.
+		\item If the operator wishes to halt the progress of the autonomous search, he has to press the stop
+button. At any point, the map is written into an XML File and can be loaded again for later
+use.
+	\end{itemize}
+	\item Preconditions:
+	\begin{itemize}
+		\item The robot batteries are charged and the robot is working properly.
+		\item The GUI on the host machine must be running.
+		\item The connection between robot and host machine is stable
+		\item An appropriate XML formatted map can be loaded. This map may be a new, partial or
+completed map.
+	\end{itemize}
+	\item Postconditions:
+	\begin{itemize}
+		\item The robot finished mapping completely and safely.
+	\end{itemize}
+\end{enumerate}
+\paragraph{UC003: The operator specifies no-go zone}
+\subsection Exceptional Use Cases
+\paragraph {UC004: Loss of communication signal}
+\begin{enumerate}
+	\item Use Case Name:Loss of communication signal.
+	\begin{itemize}
+		\item Descripton: The process details on the steps taken by the robot in the event if the Bluetooth
+communication link is broken between the host software and the robot.
+		\item Goal: The robot tries to re-establish communication link.
+	\end{itemize}
+	\item Flow of Events:
+	\begin{itemize}
+		\item During manual or autonomous mode, communication between host software and
+robot is lost.
+		\item The robot stops at its current position.
+		\item At the same time, it tries to re-establish communication by prompting the host software
+at a regular interval.
+		\item If communication is established, the robot will request the next instruction.
+		\item Otherwise, it will remain at its current position.
+	\end{itemize}
+	\item Preconditions:
+	\begin{itemize}
+		\item The robot is having a connection with the host software.
+	\end{itemize}
+\item Postconditions:
+	\begin{itemize}
+		\item The robot should stop immediately
+		\item The connection should be resumed after a short time.
+	\end{itemize}
+\end{enumerate}

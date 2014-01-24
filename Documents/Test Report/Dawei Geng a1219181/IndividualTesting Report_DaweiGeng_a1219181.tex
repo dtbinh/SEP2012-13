@@ -1,0 +1,486 @@
+%
+% Template Author: Dawei Geng a1219181
+% 
+%
+
+\documentclass[12pt, a4paper]{report}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{listings}
+\usepackage{xcolor} 
+ \lstset{numbers=left, 
+        numberstyle=\tiny, 
+        keywordstyle=\color{blue}, 
+        commentstyle=\color[cmyk]{1,0,1,0}, 
+        frame=double, 
+        escapeinside=``, 
+        breaklines,
+        extendedchars=false, 
+        xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+        tabsize=4, 
+        showspaces=false
+       }
+\pagestyle{headings}
+
+%%% page parameters
+\headsep = 25pt
+\begin{document}
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 25 cm
+\input{./titlepage.tex}
+\tableofcontents
+
+
+\clearpage
+
+
+\chapter{Test Plan}
+\label{cha:I}
+\section{Introduction}
+In this project, I have been working with many parts of the programming including the Robot side and Client side. The functionality of saving and loading XML documents was part of my work. 
+The functionality of XMLDoucments package including:
+\begin{enumerate}
+	\item  Create an XML file containing the data of the states of the map.
+	\item  Parse an XML which describes a map into a actual map object. Throw a XMLFormatException when a wrong XML file was chosen.
+\end{enumerate}
+During those two operations, no data shall be lost.
+There are two methods in the XMLDoucments.XMLReaderWriter.java class, one is createXml(Map map,String pathName) which takes two parameters passed by GUI and create a XML using the provided map object and file name. The other one is loadXML(String pathName) which takes a location of a file (pathName) and load that file into a map object.
+Both methods are called from the GUI and uses the data passed by user. By using JUnit test I was able to put those two function into several different test cases and after that I have the result that XMLDocuments package is working as expected. Both methods complete their job and run stable and fast enough if used appropriately.
+
+
+\section{Test Items}
+\subsection{createXml}
+\textbf{Functionality:}
+\begin{enumerate}
+	\item This item shall accept MapStructure.Map object and a string of path name.
+	\item This item creates a XML file object based on the path name.
+	\item This item writes the MapStructure.Map object and its elements into the XML file.
+\end{enumerate}
+\textbf{Approach:}
+To test this item, instead of using the main program which is GUI.LEGOGUI.java to create a new map and save as a XML, I use JUnit to run several tests to create XMl files and check if these files stores the same elements as the map objects.\\
+Firstly, I tested if the item will throw a exception when a null object is passed. Then I tested this item by creating different map objects which can be simple, complex, and map with walls and no-go zones on it(featured), then convert each of them into XML file using this item. Instead of manually check if those XMl files describe the same object as we provided, I used loadXml item reconstruct the XML into a new map object and compare those two objects see if they are the same.\\
+\textbf{\\Pass/Fail Criteria: }
+\begin{enumerate}
+	\item Item throws an exception when null object is passed.
+	\item Item creates XMl file and returns the same file name same as provided.
+	\item XML file created by the item can generate map object same as provided.\\
+\end{enumerate}
+\subsection{loadXml}
+\textbf{Functionality:}
+\begin{enumerate}
+	\item This item shall accept a string of path name which locate an existing XML file.
+	\item This item shall spot a wrong formatted XML file and throw a XMLFormatException.
+	\item This item reads this XML to a MapStructure.Map object if the file's format is correct.
+\end{enumerate}
+\textbf{Approach:}
+I used two approached to test this item. First I ran the GUI and create several maps with different sizes and features, save them into XML files and then load them into the GUI and check if the new map's appearance is same to the original.\\
+Then I use JUnit to test this item. Firstly I created an XML file with wrong format manually, and pass it to the item see if it throws an XMLFormatException. Then I tested if a loaded map can generate the same XML file as the original, the steps shall be:
+\begin{enumerate}
+	\item Create a map.
+	\item Generate an XML file describes this map named as oldFile.XML.
+	\item Load oldFile.XML to a new map object and re-generate an XML file named as newFile.XML using the new map object.
+	\item Compare two files MD5 value check if they are the same.
+\end{enumerate}
+\textbf{\\Pass/Fail Criteria: }
+\begin{enumerate}
+	\item Item throws an XMLFormatException when reading an XML with wrong format.
+	\item Map object loaded the item can generate XML file same as the original.\\
+\end{enumerate}
+
+\subsection{Performance}
+\textbf{Functionality:}
+Functions in the XMLReaderWriter.java class should perform fast enough which can provide continuous user experience.\\
+\textbf{\\Approach:}
+I tested the perform of this class using JUnit test. I created a performance test which has a very large map object(200*200 pixels) and create a XML file using this map, then load the XML file into a new map, re-create another XML file using the new map. During those operations I kept a record of how much time it took.\\
+\textbf{\\Pass/Fail Criteria: }
+The hole operation takes under 500 milliseconds to finish.\\
+
+\chapter{Test Cases} % (fold)
+\label{cha:test_cases}
+%
+% Add how the tests runs and where to find them.
+%
+All the JUnit test cases can be fond \href{https://version-control.adelaide.edu.au/svn/sep2012-13/Code/Working Copy/Version 0.3/src/Tests/XMLDocumentsTest.java}{here}\\
+
+\section{Testing Environment}
+\textbf{Testing tool: } \\
+Eclipse IDE for Java Developers: Indigo Service Release 2 
+\\with JUnit 4.11\\
+\textbf{Java version: }\\
+Java(TM) SE Runtime Environment (build 1.6.0\_37-b06-434-11M3909)\\
+\textbf{Operating System: }\\
+Mac OS X Version: 10.7.5\\
+
+
+\newcounter{casecounter}
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: Simulation
+\paragraph{Type}: Black Box Test
+\paragraph{Test Objective}: Test that the map object is saved correctly into an XML file and each value is under the correct attribute.
+\paragraph{Pre-Conditions}: A working copy of the project. 
+\paragraph{Input Specifications}: 
+\begin{enumerate}
+	\item Run the GUI.
+	\item Create a new map.
+	\item Set several no-go zones.
+	\item Save map into XML file.
+	\item Load XML into new map.
+	\item Repeat step 2 to 4 with different maps. 
+\end{enumerate}
+	
+\paragraph{Output Specification}: The saved XML file contains all the elements that would be in the map under the correct attributes and loaded map and original map have the same appearance on the GUI's map panel.
+\paragraph{Output Observed}: Maps can successfully saved to XML files containing all the right values and XML files can successfully loaded to a new map.
+\paragraph{Pass or Fail}: Pass.
+
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testNullInputMap
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Test if the function throw a exception when null object is passed.
+\paragraph{Pre-Conditions}: An XMLReaderWriter object.
+\paragraph{Input Specifications}: A null object and a file name.
+\paragraph{Output Specification}: The saved XML file contains all the values that would be in the map displayed under the correct attributes.
+\paragraph{Output Observed}: NullPointerException
+\paragraph{Pass or Fail}: Pass.
+
+\pagebreak
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testCorrectInputMap
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Test if the function returns the right file name after finish convert the map into XML file.
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a 10*10 pixels map object. 
+\paragraph{Input Specifications}: Map object and file name.
+\paragraph{Output Specification}: A stored XML file's location(file name). 
+\paragraph{Output Observed}: Returned file name is same as the provided file name.
+\paragraph{Pass or Fail}: Pass.
+
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testSimpleOutputMap
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Test if the created XML file can produce the same map object as original. 
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a 10*10 pixels map object, an empty map object to store the new map. 
+\paragraph{Input Specifications}: Map object and file name.
+\paragraph{Output Specification}: Loaded map object based on the created XML file.
+\paragraph{Output Observed}: The loaded map has no difference compare to the original.
+\paragraph{Pass or Fail}: Pass.
+\pagebreak
+
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testLargeOutputMapWithFeature
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Test if the created XML file can produce the same map object as original. 
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a 100*100 pixels map object with obstacles and no-go zones setted, an empty map object to store the new map. 
+\paragraph{Input Specifications}: Map object and file name.
+\paragraph{Output Specification}: Loaded map object based on the created XML file.
+\paragraph{Output Observed}: The loaded map has no difference compare to the original featured map.
+\paragraph{Pass or Fail}: Pass.
+
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testWrongFormatFile
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Test if the loadXML can spot a XML with wrong format.
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a wrong formatted XML file.
+\paragraph{Input Specifications}: File name of such XML file.
+\paragraph{Output Specification}: XMLFormatException.
+\paragraph{Output Observed}: Function throws a XMLFormatException.
+\paragraph{Pass or Fail}: Pass.
+\pagebreak
+
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testLargeSameFile
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: A loaded map by loadXML can generate the same XML file as the original
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a 100*100 pixels map object with obstacles and no-go zones setted, an empty map object to store the new map.
+\paragraph{Input Specifications}: Two file names of XML files for the original map and loaded map.
+\paragraph{Output Specification}: Two files describe the original map and loaded map.
+\paragraph{Output Observed}: There is no difference in the content of the two files.
+\paragraph{Pass or Fail}: Pass.
+\pagebreak
+
+
+\section{Additional Tests}
+\addtocounter{casecounter}{1}
+\subsection{Test \arabic{casecounter}}
+\paragraph{Test Case Name}: testPerformance
+\paragraph{Type}: JUnit Test
+\paragraph{Test Objective}: Performance test.
+\paragraph{Pre-Conditions}: An XMLReaderWriter object, a 200*200 pixels map object with obstacles and no-go zones setted, an empty map object to store the new map.
+\paragraph{Input Specifications}: Two file names of XML files for the original map and loaded map.
+\paragraph{Output Specification}: Two files describe the original map and loaded map.
+\paragraph{Output Observed}: Create XML file operation and load XML file operation and re-create the XML based on the loaded XML file takes under 500 millisecond.
+\paragraph{Pass or Fail}: Pass.
+
+
+% chapter test_cases (end)
+
+% Appendicies %
+\newpage
+\appendix
+\chapter{JUnit Test Cases} % (fold)
+\label{cha:junit_test_cases}
+
+% chapter junit_test_cases (end)
+\begin{lstlisting} 
+/**
+ * XML Document Reader and Writer Unit Test
+ */
+package Tests;
+
+import static org.junit.Assert.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import MapStructure.Map;
+import XMLDocuments.XMLFormatException;
+import XMLDocuments.XMLReaderWriter;
+
+/**
+ * @author Dawei Geng
+ *
+ */
+public class XMLDocumentsTest {
+
+	
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test (expected = NullPointerException.class)
+	//if XMLReaderWriter taks null object.
+	public void testNullInputMap() throws NullPointerException{
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		String fileName = xrw.createXml(null, "a");
+		
+	}
+	
+	@Test
+	//if XMLReaderWriter creates file with correct filename.
+	public void testCorrectInputMap() {
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate, 10, 10, 0, 0, 1);
+		String fileName = xrw.createXml(in, "a");
+		assertEquals("a", fileName);
+	}
+	
+	@Test
+	//after convert a map to a XML file and if we can using the XML return a same map
+	public void testSimpleOutputMap() {
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate,10,10, 0, 0, 1);
+		String fileName = xrw.createXml(in, "c");
+		MapStructure.Map out = null;
+		try {
+			out = xrw.loadXML(fileName);
+		} catch (XMLFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(out.compareTo(in), true);
+	}
+	
+	
+	@Test
+	//after convert a map to a XML file and if we can using the XML return a same map (Featured)
+	public void testLargeOutputMapWithFeature() {
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate, 100, 100, 0, 0, 1);
+	   	in.findPixel(2, 3).setWall();
+	   	in.findPixel(6, 7).setNoGoZone();
+		String fileName = xrw.createXml(in, "d");
+		MapStructure.Map out = null;
+		try {
+			out = xrw.loadXML(fileName);
+		} catch (XMLFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(out.compareTo(in), true);
+	}
+	
+	
+	@Test (expected = XMLFormatException.class)
+	//if XMLReaderWriter taks null object.
+	public void testWrongFormatFile() throws XMLFormatException{
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		Map out = null;
+		File wrongfile = new File("fileNotCorrect.XML");
+		try {
+			FileWriter fw = new FileWriter(wrongfile);
+			BufferedWriter bw=new BufferedWriter(fw);
+			 bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			 bw.newLine();
+			 bw.write("<wrong-map units=\"pixels\">");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out = xrw.loadXML("fileNotCorrect.XML");
+		
+	}
+	
+	@Test
+	//if same map generates the same XMl file.
+	public void testSameFile() {
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate, 10, 10, 0, 0, 1);
+		String fileName1 = xrw.createXml(in, "e");
+		MapStructure.Map out = null;
+		try {
+			out = xrw.loadXML(fileName1);
+		} catch (XMLFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String fileName2 = xrw.createXml(out, "f");
+		assertEquals(CompareFiles(fileName1, fileName2), true);
+	}
+	
+	
+	@Test
+	//if same map generates the same XMl file.(Featured)
+	public void testLargeSameFile() {
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate, 100, 100, 0, 0, 1);
+	   	in.findPixel(2, 3).setWall();
+	   	in.findPixel(6, 7).setNoGoZone();
+		String fileName1 = xrw.createXml(in, "g");
+		MapStructure.Map out = null;
+		try {
+			out = xrw.loadXML(fileName1);
+		} catch (XMLFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String fileName2 = xrw.createXml(out, "h");
+		assertEquals(CompareFiles(fileName1, fileName2), true);
+	}
+	
+	@Test
+	//performance test, pass if time spend less then 500ms.
+	public void testPerformance() {
+		long t1 = System.currentTimeMillis();
+		XMLReaderWriter xrw = new XMLReaderWriter();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	   	java.util.Date myDate=new java.util.Date();
+	   	String mapDate=formatter.format(myDate); 
+	   	MapStructure.Map in =  new MapStructure.Map(mapDate, 200, 200, 0, 0, 1);
+		String fileName1 = xrw.createXml(in, "g");
+		MapStructure.Map out = null;
+		try {
+			out = xrw.loadXML(fileName1);
+		} catch (XMLFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String fileName2 = xrw.createXml(out, "i");
+		long t2 = System.currentTimeMillis() ;
+		long time = t2-t1;
+		assertEquals(time < 500, true);
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param path1
+	 * @param path2
+	 * @return true if two files have same content, else returns false
+	 */
+	private boolean CompareFiles(String path1, String path2){
+		String first = getFileMD5(new File(path1));
+		String second = getFileMD5(new File(path2));
+		return first.equals(second);
+		
+	}
+	
+	/**
+	 * 
+	 * @param file
+	 * @return file's MD5 value.
+	 */
+	private static String getFileMD5(File file) {
+	    if (!file.isFile()){
+	      return null;
+	    }
+	    MessageDigest digest = null;
+	    FileInputStream in=null;
+	    byte buffer[] = new byte[1024];
+	    int len;
+	    try {
+	      digest = MessageDigest.getInstance("MD5");
+	      in = new FileInputStream(file);
+	      while ((len = in.read(buffer, 0, 1024)) != -1) {
+	        digest.update(buffer, 0, len);
+	      }
+	      in.close();
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+	    BigInteger bigInt = new BigInteger(1, digest.digest());
+	    return bigInt.toString(16);
+	  }	
+}
+
+\end{lstlisting} 
+
+\chapter{Glossary} % (fold)
+\label{cha:glossary}
+\textbf{GUI: } Graphical User Interface.\\
+\textbf{XML: } Extensible Markup Language.
+
+% chapter glossary (end)
+
+\end{document}

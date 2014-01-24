@@ -1,0 +1,475 @@
+
+% SEP 2012 Group 13
+% Software Requirements Document (SRS)
+%
+\documentclass[11pt, a4paper]{report}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{url}
+\pagestyle{headings}
+
+%%% page parameters
+\headsep = 25pt
+\begin{document}
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 25 cm
+\input{./titlepage.tex}
+\tableofcontents
+
+
+
+% Version History %
+
+% IMPORTANT %
+% Whenever you make a change to this document you MUST put an entry in below
+% Must conform to firstName lastName &  date & discription \\ \hline
+
+
+\clearpage
+\section*{Revision History}
+\begin{tabular}{| l | l | l | l | }
+\hline
+Name      		&	Date        	&	Reason For Changes                  	&	Version     	\\ \hline
+Dawei Geng      & 	12 Aug 2012    	& 	basic framework of the SRS     			&	0.1             \\ \hline
+Dawei Geng      &	12 Aug 2012    	& 	Introduction and Overall Description    &	0.1             \\ \hline
+Yufeng Bai  	&	13 Aug 2012 	&	User requirements 						&	0.2  			\\ \hline
+Dawei Geng		&	16 Aug 2012		&	Add user requirements \& layout edit	&	0.3 			\\ \hline
+Dawei Geng		&	17 Aug 2012		&	Minor changes \& layout edit			&	0.3.1 			\\ \hline
+
+
+
+
+
+\end{tabular}
+\clearpage
+
+% Introduction %
+
+\chapter{Introduction}
+
+\section{Purpose}
+This document is set to describe the requirement of the Archeology Robot Project, to be used for survey an archaeological site containing the remnants of an ancient city. This document shall address the user requirements, system features, external interface requirements and other non-functional requirements describing the robot and the control software's function. 
+
+
+\section{Document Conventions}
+In this document, user requirements will be describe with requirement description, requirement rationale, acceptance criteria, source of the requirement and a priority ranking. However, other requirements such as external interface requirements and non-functional requirements may not have priority ranking. 
+
+The requirements will be labeled with ID which contains letter representing the type of the requirement and a reference number. U, S, UC and N will be used in this document corresponded to User Requirement, System Requirement, Use Case, and Non-Functional Requirement. 
+
+
+
+\section{Intended Audience and Reading Suggestions}
+TThe audience of this document can be project managers, developers and testers of this project. 
+\begin{itemize}
+\item For project managers, this document gives a overall description to the requirements. A project manager shall read the entire document and pay special attention to User Requirements, External Interface Requirements, and Non-Functional Requirements.
+\item For developers, this document gives details about the requirement for them to work on. A developer shall reader the entire document and pay special attention to Use Cases and Non-Functional Requirements. 
+\item For testers, every requirement has a acceptance criteria which can be used to help all the test, and testers also should focus on the User Requirements. 
+\end{itemize}
+
+
+\section{Project Scope}
+This project's aim is to develop a new intelligent Archeology Robot to be used for survey an archaeological site. A graphic user interface shall be developed for navigation and keep track of the burried remnants within the site. The user interface will also shows the details of the robot and its position and conditions. The robot will be connected to a host computer over Bluetooth connection. The robot shall be allowed to automatic scan all the flat surface on the site and be able to find the hidden walls or remnants under the ground and produce the information of the site and shows on the user interface's map. 
+User can operate robot through operating the host machine. Manual control shall be enabled when required.
+
+
+\section{References}
+\subsubsection*{Design Brief}
+Computer Science Department, The University of Adelaide (2012) \textit{Project Description}. Adelaide : South Australia
+
+
+\pagebreak
+
+
+% Overall Description %
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+The goal of this project is to develop a new archeology robot and its operating software. It will contains the robot itself, a host machine with a graphic user interface connect to the robot over Bluetooth. This robot will be able to survey the archaeological site with safety priority which the robot shall have the ability to avoid walls and obstacles on the surface. 
+
+The robot itself will have one light sensor to detect the hidden walls and object, two touch sensor to avoid collision, and ultrasonic sensors to detect walls or obstacles in front of the robot. 
+
+The operating software will have a user friendly graphic user interface which contains control panel, map area, and robot detail information such as battery usage, location, and mode. 
+
+The database of this project shall contain XML map files of the sites which the robot have surveyed before. Saving and loading of these files is allowed. 
+
+\section{Product Features}
+The project includes the following main features
+\begin{itemize}
+\item Robot shall automatic scan the site and giving feedback on to the screen of the host machine in real time. 
+\item A site map shall be produced when a complete survey is done by the robot.
+\item Manual control over the robot is allowed. 
+\item Since there may have “no go” zone within the site. The robot shall never enter the “no go” zone, if ever a robot is in a “no go” zone by accident, a message will displayed on the host's screen and called for help.
+\item As the robot is working on the site, accuracy and safety is important. In order to ensure that, the default speed of the robot will be set in a acceptable level. 
+\end{itemize}
+
+\section{User Classes and Characteristics}
+The user of this system will be trained archaeologist who have the knowledge to operate and control the robot. These archaeologist have been trained to perform safe operations to the software and the robot under variety of situations.
+
+\section{Operating Environment}
+The host software can be run on any system which has installed, Java, NXJ and also have Bluetooth implementations.
+The client software shall be installed on a LEGO\textregistered{} Mindstorm\textregistered{} robot running NXJ 0.9.1.
+
+\section{Design and Implementation Constraints}
+The client machine which is the robot shall have its own program can accept and run commands from the host machine. The client software shall be stored in the robot's memory which has limited capacity. Therefore the software on the client end needs to be as minimal as possible.
+The software shall be written in JAVA using the LeJOS API to interact with the robot.
+The client and host shall use Bluetooth\textregistered{}  for communications.
+
+\section{User Documentation}
+A user manual shall be produced, outlining the basic operation of the robot and also going into detail about the full capabilities of the package.
+
+
+\section{Assumptions and Dependencies}
+In the project the following list will be assumed.
+
+\begin{itemize}
+  \item{The terminal used is capable of running JAVA}
+  \item{The terminal used is capable of running NXJ}
+  \item{The terminal used is capable of Bluetooth connection}
+  \item{The archaeological sites will be a single enclosed polygon}
+  \item{The archaeological sites will have grind lines ever 50mm both vertically and horizontally}
+  \item{The archaeological sites will be a flat ground}
+  \item{Hidden walls will be showed as thick gray shape}
+  \item{The smallest hidden which a robot can detect will be at size of 25mm*25mm}
+\end{itemize}
+
+
+\pagebreak
+
+
+
+% User Requirements %
+
+\chapter{User Requirements}
+%User requirements should consist of functional requirements which the system should provide.
+\section{Manual Controls}
+\subsection{R0001: Robot movements}
+\paragraph{Description: }
+Robot is able to move forward, backward, rotate left and rotate right according to the manual operation. 
+\paragraph{Rationale: }
+If user choose the manual mode, the robot will not be permitted  to move by himself. The user is required to use the GUI to control the robot by pressing the button. The GUI has different buttons which represent the different functionality.
+\paragraph{Acceptance criteria: }
+In manual control mode, when user press direction button(forward, backward, left, right) on the GUI, the robot will move according to the command which is given by GUI. The robot is able to move correctly.   
+\paragraph{Source: }
+Based on third week's milestone plan. 
+\paragraph{Priority: }
+High
+
+
+
+\subsection{R0002: Hidden wall detection}
+\paragraph{Description: }
+The robot is required to search the map and to find all hidden walls. In manual control mode, the user need to control the robot to detect by himself/herself.
+\paragraph{Rationale: }
+The robot will not be allowed to detect the hidden walls automatically. User have to use GUI to control the robot. If the users do not give the command  to the robot. The robot will stop and wait for the further command. The switch of light sensor is still controlling by users. If users do not turn the light sensor on, the robot will not be able to find the hidden walls.  
+\paragraph{Acceptance criteria: }
+When the users control the robot by GUI, the users need to turn the light sensor on. The light sensor will detect the hidden walls according to the colours of the shape on the map. If the shape is gray, this shape will be detected as a hidden wall. When robot traverse the map(light sensor is on), if the robot find a hidden wall(gray shape), it will remind the users and let the users give it the further command.
+\paragraph{Source: }
+Based on introduction of Project Description
+\paragraph{Priority: }
+High
+
+
+
+\subsection{R0003: Avoid danger}
+\paragraph{Description:}
+The robot must be sure to work safely. The robot is not permitted to collide against any external block. The robot is also not allowed to enter the “no go” zone.
+\paragraph{Rationale:}
+The robot is not permitted to bump to any external object. The user need to turn the bump sensor and ultrasonic sensor on to detect the block and protect the robot. The robot also have to walk inside the map and not go into the “no go” zone.  
+\paragraph{Acceptance criteria:}
+Users need to turn the light sensor and bump sensor on. In this situation, if the robot detect the external block, the robot will remind the user, at the same time it will slow down automatically and stop in front of the block(the colliding is forbidden, so we have to set it stop automatically.) Then the robot will not allow to move until the users give it move command. The robot will deal with "out of bound" problem and “no go” zone problem in the same way as colliding problem.
+\paragraph{Source:}
+Based on the Project Description 2.4 safety.   
+\paragraph{Priority:}
+High
+
+
+\section{Automatic Survey}
+\subsection{R0003: Automatic robot movements }
+\paragraph{Description:}
+The robot is able to move forward, backward, rotate left and rotate right automatically. The users do not need to control robot and robot can traverse the whole map according to the requirement.
+\paragraph{Rationale:}
+The movement is the fundamental requirement for the robot. Robot must walk and traverse the whole map by itself. In this mode, user do need to use the GUI to control the robot, the robot will move automatically.    
+\paragraph{Acceptance criteria:}
+The robot can move automatically. It can determine to move forward or rotate according to the actual situation of map by itself. The automatic mode also can be switched by users' operation.  
+\paragraph{Source:}
+ Based on week 3 of the milestone plan. 
+\paragraph{Priority:}
+High
+
+
+
+\subsection{R0004: Automatic exploration}
+\paragraph{Description:}
+The robot is required to search the map and to find all hidden walls. In automatic mode, the robot is required to traverse and find hidden walls automatically. When the robot discover one hidden wall, it will record the position of the hidden wall and choose another direction.
+\paragraph{Rationale:}
+The main task of this robot is to find the hidden wall on an archaeological site. The robot must have the ability to detect all areas and find all hidden walls without the controlling.   
+\paragraph{Acceptance criteria:}
+The robot need to traverse the site(except the no-go zone). The light sensor will take responsibility to detect the hidden wall. The light sensor will find hidden walls according the colour of the them(gray shape). Users do not need to control the sensor. The sensor will keep switching on for the whole process. When the robot find one hidden wall, it will record the position of this wall and send the message to users, at the same time , the robot will choose another direction and keep detecting.  
+\paragraph{Source:}
+ Based on introduction of Project Description
+\paragraph{Priority:}
+High
+
+
+
+\subsection{R0005: Avoid danger}
+\paragraph{Description:}
+The robot must be sure to work safely. The robot is not permitted to collide against any external block. The robot is also not allowed to enter the “no go” zone.
+
+\paragraph{Rationale:}
+The robot is not permitted to bump to any external object. The user need to turn the bump sensor and ultrasonic sensor on to detect the block and protect the robot. The robot also have to walk inside the map and not go into the “no go” zone.  
+
+\paragraph{Acceptance criteria:}
+The bump sensor and ultrasonic sensor will keep switching on for the whole process. In this situation, if the robot detect the external block, the robot will remind the user, at the same time it will slow down automatically and stop in front of the block(the colliding is forbidden, so we have to set it stop automatically) Then the robot will choose another direction and travel another way. The robot will deal with "out of bound" problem and “no go” zone problem in the same way as colliding problem.
+\paragraph{Source:}
+Based on the Project Description 2.4 safety.  
+\paragraph{Priority:}
+High
+
+
+\subsection{R0006: Finding path }
+\paragraph{Description:}
+The client hopes the robot is able to find the path between two given position. In the automatic mode, the robot need to calculate the path(the shortest and safest path are better).    
+\paragraph{Rationale:}
+This is the additional requirement from client, the client hopes we can implement this task. According to the client's requirement, we should find the shortest way or the safest way(safe is priority) to reach to a given position. 
+\paragraph{Acceptance criteria:}
+The user can set the position by GUI, then the robot will calculate the path automatically and move on the map according to client's requirement. In our design, safe is priority. So we always choose the safe way first.     
+\paragraph{Source:}
+Based on the week 2 of the client meeting.  
+\paragraph{Priority:}
+Low
+
+
+\section{Graphical User Interface}
+\subsection{R0007: Map representation}
+\paragraph{Description:}
+The GUI contains a window for drawing the map. The map is synchronous with the robot. Before the  robot starts, the initial colour of map window is black. When the robot moves, the map will be drawing gradually. After the robot finishes the detection, the map will be finished at the same time. The the GUI will remind users that the map is complete.
+\paragraph{Rationale:}
+The map window is used for users to show the process of detection. From the map window, the users can check the position of each hidden walls, block and the “no go” zone. Map is necessary and convenient for checking.
+\paragraph{Acceptance criteria:}
+When the robot moves, the map will be drawn gradually. The map will mark all hidden walls, blocks and "no-go zones". The map also demonstrates the location of the robot, which is convenient for users to understand whole process of searching.
+\paragraph{Source:}
+Based on the Project Description 2.1
+\paragraph{Priority:}
+High
+
+
+
+\subsection{R0008: Robot representation}
+\paragraph{Description:}
+The status of robot need to be represented to users. The status includes the power of battery, the location, the Bluetooth connection and the speed of the robot. Users are able to understand the  robot's situation and make some adjustment.
+\paragraph{Rationale:}
+When the power of battery is almost running out, the robot need to return to where it begins. So it is necessary to monitor the status of battery. The location and the speed demonstrate the immediate situations for robot. The Bluetooth connection is the signal to represent the signal of Bluetooth to make sure the robot is connecting correctly.
+\paragraph{Acceptance criteria:}
+The battery is demonstrated by GUI using a bar. We will use percentage to show how much power left. The location is demonstrated by coordinate to show where the robot is. 
+The speed is demonstrated by GUI using a bar and a number. 
+The Bluetooth connection is a light, when the Bluetooth works properly, the colour of  light will be green. If the Bluetooth lose the signal, the colour will become red.
+\paragraph{Source:}
+Based on the Project Description 2.1
+\paragraph{Priority:}
+Low
+
+
+
+\subsection{R0009: Robot mode change}
+\paragraph{Description:}
+There are two modes can be switched by users: Manual mode and Automatic mode. These two modes can be switched between each other in GUI. \paragraph{Rationale:}
+The client requires us to have these two modes, which is convenient for the client to control the robot at any time. If we do not have the functionality of mode change, the client will hard to control the robot by client. The mode change will be built as a button.
+\paragraph{Acceptance criteria:}
+When the users press the button of mode change, there is a window jumping out and write like "Do you want to change to the manual mode?" If the users press "yes", the robot will execute as manual mode. The same situation is also suitable for manual mode to automatic mode.
+\paragraph{Source:}
+Based on the client meeting of week 3rd.
+\paragraph{Priority:}
+High 
+
+
+\subsection{R0010: User mode change}
+\paragraph{Description:}
+There are two modes can be switched: Client mode and Developer mode. In Client mode, this system allow client to control the robot by GUI, the client can use the robot to search the archeological site and to find the hidden walls, blocks and the no-go zones. The client is not permitted to edit the setting of the robot, for example, the client is not allowed to change the speed setting and the bluetooth setting. If developers want to use Developer mode, they must log in by password(developer only). In Developer mode, the developer can change the speed and the some other system setting.
+\paragraph{Rationale:}
+The Client mode is used by client, they do not need to understand the internal setting of the whole system. The robot is just a tool to finish its task. They are not permitted to change the internal setting, because sometimes clients do not understand the principle of this system, they may break the system due to some wrong operations for internal setting. The developers are allowed to change the system, because this is our responsibility to make the system better.
+\paragraph{Acceptance criteria:}
+The default mode of the GUI is Client mode. If the developer want to change to Developer mode, they have to input the ID and the password in the window on the top right side of the GUI window. Then the developers can change the internal setting here.
+\paragraph{Source:}
+Based on the client meeting of week 3rd.
+\paragraph{Priority:}
+Low
+
+
+
+\subsection{R0011: Load/Save XML map file}
+\paragraph{Description:}
+The map need to be loaded and saved from GUI. The GUI has the two buttons to implement the load and save operations. 
+\paragraph{Rationale:}
+The robot is required to walk on any kind of map, so we need to save more maps in computer and these maps are also convenient and easy to be loaded by client. So we need to add the buttons to control the loading and saving by users.
+\paragraph{Acceptance criteria:}
+Wen users press the loading button, there is a window jumping out and you can choose the map from here. On the other hand, if the robot finish the searching and users want to save the map, the users can press the saving button. Then this finished map will be saved in computer.
+\paragraph{Source}
+Based on the Project Description 2.1
+\paragraph{Priority:}
+High
+
+
+\section{Emergency handle}
+\subsection{R0012: Handle entering the “no-go” zone by accident}
+\paragraph{Description:}
+For preventing some unanticipated situation, we set the Emergency Handle operation. When some accidents happen, users need to press Emergency Handle button.
+\paragraph{Rationale:}
+We must set some operation to deal with some unexpected situation, which is a necessary method to protect the whole robot system. 
+\paragraph{Acceptance criteria:}
+When the users press the Emergency Handle button, the robot will stop immediately and wait for the further command. For example, the robot has to stop at the boundary of the “no go” zone. 
+\paragraph{Source:}
+Based on the client meeting of the week 3rd
+\paragraph{Priority:}
+High  
+
+
+\subsection{R0013: Handle bluetooth connection loss}
+\paragraph{Description:}
+This system shall have the ability to handle a connection loss situation by trying to reconnect to the robot or send a error message to host machine. 
+\paragraph{Rationale:}
+A connection loss could cause operation fail or even broken the robot. In order to improve the entire operation's safety and efficiency, we add this requirement into our emergency handling procedures. 
+\paragraph{Acceptance criteria:}
+When a connection loss happen, the robot should stop operation immediately and the host machine shall trying to reconnect the robot. if the reconnection failed, a error dialog box shall appeared on the host machine waiting for further operation.
+\paragraph{Source:}
+First client meeting.
+\paragraph{Priority:}
+Medium
+
+
+\subsection{R0014: Handle battery failure}
+\paragraph{Description:}
+This system shall be able to handle a emergency when the robot's battery is running out and can not return to the start point.
+\paragraph{Rationale:}
+The robot should operate under sufficient energy at anytime. However, There may be some cause to a battery failure such as faulty batteries and external damage to the battery. Such failure could cause connection loss and inaccurate information. 
+\paragraph{Acceptance criteria:}
+When the system detects the battery level is not enough for the robot to return to the start point, the robot should stop operation immediately and the host machine shall trying to reconnect the robot. if the reconnection failed, a error dialog box shall appeared on the host machine waiting for further operation.
+\paragraph{Source:}
+First client meeting.
+\paragraph{Priority:}
+Medium
+
+        
+           
+
+% System Features %
+\pagebreak
+\chapter{System Features}
+
+
+\section{Manual Control}
+%add \paragraph{UCXXX} if it is a use case.
+\paragraph{Description}
+\paragraph{Priority}
+\paragraph{Stimulus}
+\paragraph{Functional Requirements}
+\begin{itemize}
+\item 
+\end{itemize}
+
+
+\pagebreak
+ 
+
+% External Interface Requirements %
+
+\chapter{External Interface Requirements}
+
+\section{User Interface}
+
+\section{Hardware Interfaces}
+
+
+\section{Software Interfaces}
+
+
+
+\section{Communications Interfaces}
+
+\pagebreak
+
+
+% Other Nonfunctional Requirements %
+
+\chapter{Other Non-functional Requirements}
+
+\section{Robot Performance}
+
+\subsection{N0001: Time Performance}
+\paragraph{Description:}
+The robot must be able to scan the whole map and detect all the elements on that map, within a adequate amount of time.
+\paragraph{Rational:}
+Normally the robot should complete any tasks in 20 minutes, including scan the map and find all hidden walls and remnants.
+\paragraph{Priority:}
+Low
+
+\subsection{N0002: Accuracy Performance}
+\paragraph{Description:}
+The robot must be able to mark the position of elements correctly and accurately. It must be able to tell the difference between hidden walls and remnants which distinguished by different colors.
+\paragraph{Rational:}
+The map must be generated correctly to allow the robot to avoid obstacles, even entering the no-go zones.
+\paragraph{Priority:}
+Medium
+
+\section{Safety Requirements}
+
+\subsection{N0003: latency}
+\paragraph{Description:}
+Robot is able to give a response to the command in a response time. Normally,this time is as short as possible.
+\paragraph{Rational:}
+Response time could be extremely important when the robot is in a dangerous situation and emergency stop needs to be carried out.
+\paragraph{Priority:}
+High
+
+\subsection{N0004: Manual Mode Security}
+\paragraph{Description:}
+When the robot is in manual mode, the sensors must keep functioning to avoid collision or entering no-go zones. A warming message should also appears on GUI when the user is trying to do something dangerous.
+\paragraph{Rational:}
+Accident may happened in manual mode by misoperations. Even the user try to enter no-go zones or hit the walls intentionally, the robot should be able to stop by itself.
+\paragraph{Priority:}
+High
+
+\section{The GUI layout}
+
+\subsection{N0005: GUI layout}
+\paragraph{Description:}
+The GUI is fit into a 1100x768 fixed sized window with a 800x600 map display area. Speed control,icon information and Coordinate panels are located below the map.Log information, mode switching,NXT state and manual control buttons are on the right part.
+\paragraph{Rational:}
+The GUI is desired to ensure that it is comfortable to used by our client. So we put directional control on the right-hand side same with keyboard as these buttons may be used most commonly. We also let the map occupies a lot of space to make sure users can see it clearly.
+
+
+\pagebreak
+
+% Appendicies %
+\newpage
+\appendix
+
+\pagebreak
+
+\chapter{Glossary}
+
+\textbf{Automatic Mode}:  Mode of operation, completely controlled by robot and host machine, without human input of movements. 
+\\ \textbf{Bluetooth}: Wireless connection used to communicate between robot and host machine.
+\\ \textbf{Explored Area}: The area that robot have inspected, which allows robot to travel safely.  
+\\ \textbf{Gird}: A size of 50mm*50mm area in map, which contains 4 pixels. Each gird can be labeled as explored, unexplored, or "no go".
+\\ \textbf{GUI}: Graphical User Interface. Displays the map panel, control panel and status panel.
+\\ \textbf{Light Sensor}: Sensor used to detect hidden walls within the site, located at the front of the robot. The senser returns the distance of the object.
+\\ \textbf{Manual Mode}: Mode of operation. Movements controlled directly through operator.
+\\ \textbf{"no go" zone}: A zone predefined is forbidden for the robot to enter. 
+\\ \textbf{Pixel}: A size of 25mm*25mm area in map, defined as the smallest resolution, which is also the smallest area of hidden walls that robot can detect.  
+\\ \textbf{SDD}: Software Design Document.
+\\ \textbf{SEP}: Software Engineering and Project.
+\\ \textbf{SPMP}: Software Project Management Plan.
+\\ \textbf{Ultrasonic Sensor}: Sensor used to detect walls and obstacles within the site, located at the front of the robot. The sensor returns the distance of the object.
+\\ \textbf{Unexplored Area}: The area that robot have not inspected, which can be considered dangerous.  
+\\ \textbf{XML}: Extensible Markup Language. The map is saved as an XML file.
+
+
+
+
+
+\end{document}

@@ -1,0 +1,328 @@
+
+% SEP 2012 Group 13
+% Software Design Document (SDD)
+%
+\documentclass[11pt, a4paper]{report}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{url}
+\pagestyle{headings}
+
+%%% page parameters
+\headsep = 25pt
+\begin{document}
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 25 cm
+\input{./titlepage_SDD.tex}
+\tableofcontents
+
+
+
+% Version History %
+
+% IMPORTANT %
+% Whenever you make a change to this document you MUST put an entry in below
+% Must conform to firstName lastName &  date & discription \\ \hline
+
+
+\clearpage
+\section*{Revision History}
+\begin{tabular}{| l | l | l | l | }
+\hline
+Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+Dawei Geng      &	03 Sep 2012     &	Template			                  	  	&	0.1 	    	\\ \hline
+Yufeng Bai         &	06 Sep 2012	&	Chapter 7						&	0.2		\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+%Name      		&	Date        	&	Reason For Changes                  	  	&	Version     	\\ \hline
+
+
+
+
+
+
+\end{tabular}
+\clearpage
+
+% Introduction %
+
+\chapter{Introduction}% (fold)
+\label{cha:I}
+%Provide an overview of the SDD and a description of the scope of the system to be developed.%
+
+
+\section{Purpose and Scope}
+\subsection{Purpose}
+%Define the purpose of this document, specify intended readership of the docu- ment.%
+
+
+\subsection{Scope}
+%Identify the context of the system; explain what the proposed system does (and what does not, if necessary); describe the relevant benefits, objectives and goals. The description should be consistent with your SRS.%
+
+
+\section{References}
+%Provide a complete list of all documents that you referenced in SDD.%
+
+
+\section{Overview}
+%Overview the content of the document; explain how the SDD is organized.%
+
+\section{Constraints}
+%Briefly describe any restrictions, limitations, and constraints that affect the design and implementation of the system.%
+
+
+% chapter Introduction (end)
+\pagebreak
+
+
+\chapter{System Overview}% (fold)
+\label{cha:SO}
+%Briefly introduce the system context and design.%
+
+
+% chapter System Overview (end)
+\pagebreak
+
+
+\chapter{System Architecture and Components Design}% (fold)
+\label{cha:SACD}
+%In this section, you should cover the following content, in several subsections.%
+
+
+\chapter{Architectural Description}
+%Describe the architectural design of the whole system. Typically, you should include a block diagram showing the major subsystems and their interconnec- tions.%
+
+
+\section{Component Decomposition Description}
+%A decomposition of the subsystems that summarizes the software components.%
+
+
+\section{Detailed Components Design Description}
+%Give the detailed design for each component. In particular, for each component, you need to provide:
+%• Component Identifier: An identifier unique to this component.
+%• Purpose: A reference (link) back to the requirement specification (SRS).
+%• Function: What does this component do? Describe its functionality.
+%• Subordinates: The components used by this component.
+%• Dependencies: Constraints placed on this component by other compo- nents.
+%• Interfaces: Control and data flow in and out of the component.
+%• Data: Description of internal data if there is any.
+
+
+\section{Architectural Alternatives}
+%Discuss briefly other architectures that were considered if any.%
+
+
+\section{Design Rationale}
+%Discuss the rationale on selecting the architecture described in 3.1, including the critical issues and tradeoffs that were considered.%
+
+
+% chapter System Architecture and Components Design (end)
+\pagebreak
+
+
+\chapter{Data Design}% (fold)
+\label{cha:DD1}
+%You should cover database description and data structures in this section.%
+
+
+\section{Database Description}
+%Describe briefly the database(s) that is part of the system.%
+
+
+\section{Data Structures}
+%Give the detailed design of the database, i.e., entities and their relationships. You can use either ER model or UML for this purpose.%
+
+
+% chapter Data Design (end)
+\pagebreak
+
+\chapter{Design Details}% (fold)
+\label{cha:DD2}
+%You shall describe your design by using the following diagrams to reflect all the major requirements that you documented in the SRS.%
+
+
+\section{Class Diagrams}
+%Describe all class diagrams that are considered in the system. Give the details (e.g., attributes, operations) associated with the class.%
+
+
+\section{State Diagrams}
+%Present the state diagrams of objects involved.%
+
+
+\section{Interaction Diagrams}
+%Present the interactions of objects involved.%
+%Note: all the diagrams shall be numbered and link to the requirements in%
+%the SRS; UML notations should be strictly followed.%
+
+
+% chapter Design Details (end)
+\pagebreak
+
+
+\chapter{Human Interface Design}% (fold)
+\label{cha:HID}
+
+\section{Overview of the User Interface}
+%Describe briefly the general functionalities of the system from end users’ per- spective.%
+The Graphical User Interface is used to communicate with the robot. The GUI is connected with robot, the client is able to control the robot by GUI. When the robot finishes its task, the client is allowed to switch off and disconnect with robot. In addition, the GUI demonstrates the status of the robot. The status includes the speed, the power and the location of the robot. The GUI also shows the obstacles, the "no-go" zone and hidden walls, which is able to be checked on the map window.\\
+
+The GUI is able to demonstrate the follow functions for users:
+\begin{itemize}
+\item Save map to a XML file
+\item Load map from a XML file
+\item Change the control mode
+\item Demonstrate the Bluetooth and Battery status
+\item Control the moving direction of the robot(i.e. forward, backward, rotating)
+\item Demonstrate the Icon of the map
+\item Demonstrate the Log Information
+\item Change the speed of the robot
+\item Demonstrate the coordinate of the robot
+\end{itemize}
+The GUI is displayed below:    
+\pagebreak
+\begin{center}
+ \includegraphics[width=11.20cm]{GUI.jpg}
+\end{center}
+\begin{center}
+\textbf {Figure 11: GUI} \\[0.3cm]
+\end{center}
+\begin{center}
+ \includegraphics[width=11.20cm]{GUI2.jpg}
+\end{center}
+\begin{center}
+\textbf {Figure 12: GUI WITH MAP} \\[0.3cm]
+\end{center}
+\section{Deatiled Design of the User Interface}
+\subsection{Save map}
+The GUI includes a icon which is used to save the map from a XML file. When the client presses the File menu and choose the save option, there is a window jumping out, the client is able to choose the file where the client want to save.  
+\begin{center}
+ \includegraphics[width=9.20cm]{save}
+\end{center}
+\begin{center}
+\textbf {Figure 13: SAVE MAP} \\[0.3cm]
+\end{center}
+\subsection{Load map}
+The GUI includes a icon which is used to load the map from a XML file. When the client presses that icon, there is a window jumping out, the client is able to choose the map from there. 
+\begin{center}
+ \includegraphics[width=9.20cm]{load}
+\end{center}
+\begin{center}
+\textbf {Figure 14: LOAD MAP} \\[0.3cm]
+\end{center}
+\subsection{Change the control mode}
+The client is allowed to change the control mode by pressing the mode button. When the client presses the Auto mode button, there is a widget jumping out. Then if the client presses "yes", the robot changes to the Auto mode. The client is allowed to do the same operation to change to the Manual mode.  The Log information display which mode it is currently.  
+\begin{center}
+ \includegraphics[width=11.20cm]{changemode.jpg}
+\end{center}
+\begin{center}
+\textbf {Figure 15: Change Mode} \\[0.3cm]
+\end{center}
+\begin{center}
+ \includegraphics[width=11.20cm]{changemode2}
+\end{center}
+\begin{center}
+\textbf {Figure 16: Change Mode icon} \\[0.3cm]
+\end{center}
+\subsection{Demonstrate the Bluetooth and battery status}
+The Bluetooth and battery status are displayed on the GUI, if the bluetooth loses the connection, the log information board will demonstrate the lose information. The power of the battery is displayed by the percentage number and the colour of the battery bar will change along with the battery level.
+ \begin{center}
+ \includegraphics[width=11.20cm]{bluetooth_battery}
+\end{center}
+\begin{center}
+\textbf {Figure 17: Bluetooth and battery demonstration } \\[0.3cm]
+\end{center}
+\subsection{Control the moving direction of the robot}
+The robot is able to be controlled by GUI when the robot is changed to the Manual mode. The client is allowed to press the arrows to move the robot. The robot is able to move forward, backward and rotate(include rotate 90 angles and rotate 360 angles). The moving direction controlling only can be used in Manual mode.
+ \begin{center}
+ \includegraphics[width=11.20cm]{direction}
+\end{center}
+\begin{center}
+\textbf {Figure 18: Moving control} \\[0.3cm]
+\end{center}
+\subsection{Demonstrate the icon of the map}
+The robot and map information are required to be displayed on the GUI. It is necessary to use different icons to demonstrate the different map information.
+  \begin{center}
+ \includegraphics[width=11.20cm]{icon}
+\end{center}
+\begin{center}
+\textbf {Figure 19: Icon of the map} \\[0.3cm]
+\end{center}
+\subsection{Demonstrate information of the GUI on the log information board}
+The Log Information board displays the information of the GUI. For example, the Log Information board demonstrates the version and the developers of the robot. If the client changes the control mode, the board displays which mode it is now. The board also is required to indicate the connection information.
+  \begin{center}
+ \includegraphics[width=11.20cm]{board}
+\end{center}
+\begin{center}
+\textbf {Figure 20: The logging information} \\[0.3cm]
+\end{center}  
+\subsection{Control the speed of the robot}
+The GUI includes a speed bar and one specific number to control the speed of the robot. The client is allowed to change the speed of the robot by change the number of the bar. The larger number means the faster the robot is. If the number is zero, it means the robot stops immediately.
+  \begin{center}
+ \includegraphics[width=11.20cm]{bar}
+\end{center}
+\begin{center}
+\textbf {Figure 21: The speed controlling} \\[0.3cm]
+\end{center}    
+\subsection{The location of the robot}
+The GUI is required to display the specific location of the robot. The map is made up of a lot of grids. The location of the robot is able to display by coordinate, which is more accurate. When the robot moves, the coordinate will changes immediately.
+   \begin{center}
+ \includegraphics[width=11.20cm]{coordinate}
+\end{center}
+\begin{center}
+\textbf {Figure 22: The coordinate of the robot} \\[0.3cm]
+\end{center}        
+ 
+  
+%You have to present your user interface design from the following perspectives:
+%• Screen Images: screenshots showing the interface from end users’ perspec- tive.
+%• Screen Objects and Actions: discussion of screen objects and the actions associated with those objects.
+%• Report Forms: a description of major reports provided by the system, if any.
+%Note: all the interface designs have to link to the user requirements and functional requirements in the SRS; all the interface images shall be num- bered.
+
+
+% chapter Interface Design (end)
+\pagebreak
+
+
+
+
+\chapter{Resource Estimates} % (fold)
+\label{cha:RE}
+%A summary of computer resource estimates required for operating the system.%
+
+
+% chapter Resource Estimates (end)
+\pagebreak
+
+\chapter{Definitions, Acronyms, and Abbreviations} % (fold)
+\label{cha:DAA}
+%Provide definitions of all terms, acronyms, and abbreviations used in SDD.%
+
+
+% chapter Definitions, Acronyms, and Abbreviations (end)
+\pagebreak
+% Appendicies %
+\newpage
+\appendix
+
+\pagebreak
+
+\chapter{}
+
+
+
+
+
+
+\end{document}

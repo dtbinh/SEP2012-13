@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+}
+</style>
+<title>README</title>
+</head>
+<body>
+<h1>README</h1>
+
+<h3>Before you use the program, please make sure that your computer has:</h3>
+
+<hr />
+
+<h6>1.    Higher version then <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" title="Title">Java Runtime Environment(JRE) 6.0 x86</a></h6>
+
+<h6>2.    <a href="http://mindstorms.lego.com/en-us/support/files/Driver.aspx" title="Title">Fantom driver</a> for The LEGO Mindstorms.</h6>
+
+<h6>3.    <a href="http://lejos.sourceforge.net/nxj-downloads.php" title="Title">leJOS NXJ</a> Version 0.9.1 beta.</h6>
+
+<h6>4. <a href="http://ant.apache.org" title="Title">Apache Ant</a> and  <a href="http://www.gnu.org/software/make/" title="Title">GNU Make</a></h6>
+
+<hr />
+
+<h3>Up and Running</h3>
+
+<hr />
+
+<ul>
+<li><p>First of all, you need to pair with the robot with your computer, if you do not have Bluetooth in your computer, you can use the Bluetooth USB Dongle we provide.</p></li>
+<li><p>To upload the robot&rsquo;s server. Open a command prompt and execute the following command in the directory in which you can see the <code>Makefile</code>:</p>
+
+<pre><code>make upload
+</code></pre></li>
+<li><p>To run the program:</p>
+
+<pre><code>make run 
+</code></pre></li>
+</ul>
+
+
+<hr />
+
+<h3>Troubleshooting</h3>
+
+<hr />
+
+<ul>
+<li>If you are running OS X Mountian Lion you may have issues connecting the robot with your computer. Install lower version OS X or refer to  <a href="https://groups.google.com/forum/?fromgroups=#!topic/bluecove-users/7jWv1V1GC-4" title="Title">this</a> using the  <a href="https://bluecove-users.googlegroups.com/attach/8c4cbcadb7aa9e5/IOBluetooth-Lion.tgz?pli=1&part=4" title="Title">bluetooth framework</a>  from OS X Lion to fix it.</li>
+<li>LeJOS NXJ only works with 32-bit version of the JDK and JRE, so even if you have a 64-bit system, you should select a 32-bit version of the JDK and JRE. Or run the program with JVM arguement <code>"-d32"</code>.</li>
+</ul>
+
+
+<hr />
+
+<h5>Read the User Manual for more information.</h5>
+
+<h5>Please <a href="rob13tech@gmail.com" title="Title">contact us</a> if you have any questions</h5>
+</body>
+</html>

@@ -1,0 +1,105 @@
+%%%%%%weekly meeting template, prepared by Michael Sheng.  09/03/2007
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 25 cm
+
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+
+\begin{document}
+
+%%%mention the no, time, and venue of the meeting
+\noindent Software Engineering Group Project internal meeting 3 will be held in {\bf Room 462} at {\bf 3.30pm on 20 August 2012}.
+
+
+\vspace*{15pt}
+
+\begin{center}
+\huge \bf Agenda \\Client Meeting 3
+\end{center}
+
+
+
+%%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+\section*{Chair: Yufeng Bai (a1600095)}
+\section*{Present}
+\begin{enumerate}
+\item Yatong Zhou(a1204471)
+\item Nguyen Khoi (a1187070)
+\item Dawei Geng (a1219181)
+\item Yunyao Yao (a1203525)
+\item Shikai (a1214223)
+\item Jun Chen (a1206265)
+\end{enumerate}
+%\vspace*{10pt}
+%%%if some students cannot make the meeting due to some reasons, their names should appear here.
+\section{Apologies}
+
+%%%short presentation about the work of previous week or any milestone specified in the course.
+\section{Presentation}
+The SRS first draft will be present to the client.
+
+%%%any schedules for this meeting should go next, each with a separate section.
+%%%for example, the first meeting is about requirement elicitation, like the following.
+\section{Project Status}
+
+\subsection{Current Status}
+The current progress will be introduced. Collecting suggestion from client.
+\begin{enumerate}
+\item The GUI overview: the prototype GUI will be shown to the client, including dialog windows.
+\item Robot movement demonstration: basic movement of the robot will be shown to the client.
+\item Manual control through Bluetooth demonstration: we are now be able to manual control the robot through the keyboard of the host machine. 
+\end{enumerate}
+\subsection{Future Goal}
+The goal until next week's meeting will be introduced. 
+
+
+
+\section{Milestone Negotiation}
+%%%if there are more subissues, make them as subsections.
+\subsection{Project Gantt Chart}
+The project's gantt chart will be shown to the client and collecting feedback form the client. 
+\subsection{Priority of the Milestones}
+Discuss with client to initial a plan for the first milestones implementation. For now the functionalities we are planning to implement in the first milestone are:
+
+\textbf{GUI Milestone: }
+\begin{enumerate}
+\item Map creation and display one the GUI.
+\item Objects' representation. (i.e.: map, walls, hidden walls, and robot)
+\item System log display.
+\item Handle connection loss.
+\end{enumerate}
+
+\textbf{Smart Robot Milestone: }
+\begin{enumerate}
+\item Robot stops when facing a wall, and send message to the hos machine.
+\end{enumerate}
+
+\textbf{Advanced Topic: }
+\begin{enumerate}
+\item Robot be able to safely travel within to map and avoid walls.
+\item Robot mapping a long wall.
+\item Robot mapping a corner of the walls. 
+\end{enumerate}
+
+\subsection{Questions About the Milestone}
+Team members ask questions about first milestones. 
+
+%%%finally, specifies time of next meeting
+\vspace*{10pt}
+\noindent Note: Next meeting to be held on 27 August 2012.
+
+
+\end{document}

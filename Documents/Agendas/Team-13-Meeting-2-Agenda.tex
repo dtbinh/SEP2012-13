@@ -1,0 +1,113 @@
+%%%%%%weekly meeting template, prepared by Michael Sheng.  09/03/2007
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 25 cm
+
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+
+\begin{document}
+
+%%%mention the no, time, and venue of the meeting
+\noindent Software Engineering Group Project internal meeting 2 will be held in {\bf Room 462} at {\bf 3.30pm on 13 August 2012}.
+
+
+\vspace*{15pt}
+
+\begin{center}
+\huge \bf Agenda \\Client Meeting 2
+\end{center}
+
+
+
+%%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+\section*{Chair: Yatong Zhou(a1204471)}
+\section*{Present}
+\begin{enumerate}
+\item Yufeng Bai (a1600095)
+\item Nguyen Khoi (a1187070)
+\item Dawei Geng (a1219181)
+\item Yunyao Yao (a1203525)
+\item Shikai Li (a1214223)
+\item Jun Chen (a1206265)
+\end{enumerate}
+%\vspace*{10pt}
+%%%if some students cannot make the meeting due to some reasons, their names should appear here.
+\section{Apologies}
+
+%%%short presentation about the work of previous week or any milestone specified in the course.
+\section{Presentation}
+No presentation this week. 
+
+%%%any schedules for this meeting should go next, each with a separate section.
+%%%for example, the first meeting is about requirement elicitation, like the following.
+\section{Project Status}
+
+\subsection{Current Status}
+The current progress will be introduced. 
+\begin{enumerate}
+\item Current functionality realization.
+\item Current GUI sneak peek.
+\end{enumerate}
+\subsection{Future Goal}
+The goal until next week's meeting will be introduced. 
+
+
+\section{Requirements Elicitation}
+%%%if there are more subissues, make them as subsections.
+Questions about requirements will be discussed with client. 
+\subsection{Map Area}
+\begin{enumerate}
+\item Is the map fixed size or has obvious line to signify edge? 
+\item If hidden walls are signify by line, what color will be used.
+\item Is the map absolute flat, or is there any object that may has tiny angle which can not be detect ultrasonic wave or light sensor, and may lead the robot stack on that. 
+\item Is there walls built on the area map's border. 
+\item What are the hidden wall's appearance?
+\end{enumerate}
+
+\subsection{Finding Objects}
+\begin{enumerate}
+\item Is there any object too small to be detect and if there any small objects next to each other closely but has a gap, which is not passable by robot, between those object? 
+\item Is the robot required to stop when finds a piece of the hidden wall?
+\item Is technical details about the light sensor given?
+\end{enumerate}
+
+\subsection{Robot Movement}
+Questions will be asked about the robot's movement with three wheels.
+\begin{enumerate}
+\item How significant the force will be to stop the robot.
+\item How to define a unsafe situation, 
+\item Is technical details about the light sensor given?
+\end{enumerate}
+
+\subsection{Graphic User Interface}
+Questions will be asked about the graphic user interface of the control program.
+\begin{enumerate}
+\item The clients' preferred colours to represent the unmapped surface, mapped surface, buried walls and the border parts on the GUI.
+\item Using grid to represent the map.
+\end{enumerate}
+
+\subsection{Other Questions}
+%%%more issues should make it like the above one.
+\section{Milestones}
+
+Team members show the current plan about the milestone and discuss with client about the initial milestone and features will be demonstrated.
+
+%%%finally, specifies time of next meeting
+\vspace*{10pt}
+\noindent Note: Next meeting to be held on 20 August 2012.
+
+
+\end{document}

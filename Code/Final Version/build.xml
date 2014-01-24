@@ -1,0 +1,88 @@
+<project name="RO13TECH">
+<property name="src" location="./src" />
+<property name="testClassed" location="./src/Tests/*" />
+<property name="bin" location="./bin" />
+<property name="doc" location="./doc" />  
+<property name="build" location="./build" />
+<property name="lib" location="./lib" />
+
+<property name="classes.dir" value="${build}/classes"/>
+<property name="jar.dir"     value="${build}/jar"/>
+<property name="main-class"  value="GUI.LEGOGUI"/>
+  
+  <path id="classpath">
+    <fileset dir="${lib}" includes="*/*.jar" />
+  </path>
+
+	<path id="bootclasspath">
+        <fileset dir="${JAVA_HOME}/lib" includes="*.jar"/>
+        <fileset dir="${JAVA_HOME}/lib/ext" includes="*.jar"/>
+        <path refid="classpath"/>
+  </path>
+
+	<target name="clean">
+    <delete dir="${build}" />
+    <delete dir="${doc}" />
+  </target>
+
+
+	<target name="compile" depends="clean">
+    <mkdir dir="${build}" />
+    <mkdir dir="${build}/classes/" />
+    <copy todir="${build}/classes/GUI/images/">
+      <fileset dir="${src}/GUI/images" />
+    </copy>
+    <javac srcdir="${src}" destdir="${build}/classes/" debug="on" includeantruntime="off">
+      <classpath refid="classpath" />
+      <exclude name="**/Tests/**"/>	
+    </javac>
+  </target>
+
+    
+    <target name="doc" depends="compile">
+      <delete dir="${doc}" />
+      <mkdir dir="${doc}"/>
+      <javadoc
+           destdir="doc"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="RO13TECH_LEGOROBOT API" 
+           > 
+       <packageset dir="${src}">
+        <exclude name="**/Tests/**"/>
+       </packageset>
+      </javadoc>
+     </target>
+    
+    
+  <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/RO13TECH.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java fork="true" classname="${main-class}">
+        <jvmarg line="-d32"/>
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/RO13TECH.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+
+    <target name="exe">
+        <java fork="true" classname="${main-class}">
+        <jvmarg line="-d32"/>
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/RO13TECH.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>

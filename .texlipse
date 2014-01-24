@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Sep 14 15:26:50 CST 2012
+markTmpDer=true
+builderNum=0
+outputDir=Documents/SDD/Drafts/
+makeIndSty=
+bibrefDir=
+outputFormat=dvi
+tempDir=Documents/SDD/Drafts
+mainTexFile=Team-13-SDD-v0131.tex
+outputFile=Team-13-SDD-v0131.dvi
+langSpell=
+markDer=true
+srcDir=Documents/SDD/Drafts/

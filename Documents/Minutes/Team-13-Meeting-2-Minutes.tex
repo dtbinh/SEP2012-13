@@ -1,0 +1,140 @@
+%%%%%%weekly meeting template, prepared by Michael Sheng.  09/03/2007
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 22 cm
+
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+
+\begin{document} 
+
+%%%mention the no, time, and venue of the meeting
+%%%\noindent The {\em first} Software Engineering Group Project weekly meeting will be held in {\bf Room 2052} at {\bf 11.10am on Friday 9 March 2007}.
+
+
+\vspace*{15pt}
+
+\begin{center}
+\huge \bf Minutes of Client Meeting 2
+\end{center}
+
+
+\begin{center}
+\Large \bf Group 13
+\end{center}
+
+\begin{center}
+\Large \bf Monday 13th August 2012
+\end{center}
+
+%%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+%%%\section*{Chair}
+\section*{Chair}
+Yatong Zhou (a1204471)
+
+\section*{Secretary}
+Dawei Geng (a1219181)
+
+\section*{Members}
+1. Nguyen Khoi (a1187070)\\
+2. Yufeng Bai (a1600095)\\
+3. Yunyao Yao (a1203525)\\
+4. Shikai Li (a1214223)\\
+5. Jun Chen (a1206265)
+\vspace*{10pt}
+
+%%%if some students cannot make the meeting due to some reasons, their names should appear here.
+\section*{Apologies}
+None
+
+%%%short presentation about the work of previous week or any milestone specified in the course.
+\section{Time and Place}
+The meeting 2 for the Software Engineering and Project was held in Ingkarni Wardli Building, Room 4.23 at 3:30pm on Monday 13th August 2012.
+
+%%%any schedules for this meeting should go next, each with a separate section.
+%%%for example, the first meeting is about requirement elicitation, like the following.
+\section{Quorum Announcement}
+The chairman announced that a quorum of the group was present, and that the meeting, having been duly convened, was ready to proceed with its topic.
+
+\section{Summary of Previous Meeting}
+After the first meeting, we have been able to select a number of requirements comes from both clients and team members. We choose to implement them by the rank of importance. 
+The first meeting also helps us to write the outline of the Software Requirements Specification document
+
+\section{Introduction}
+
+\subsection{Current Project Status}
+%%%Collect basic functional requirements of {\em Herbs-Online} from diferent stakeholders including the contractor a
+Chair Yatong Zhou introduced the current status of the project. Including: 
+\begin{itemize} 
+\item The current functionality which have been realized on the robot: forward movement, stop when near the wall, and stop when touch a wall.
+\item The prototype of the graphic user interface(version 0.1). Preview of the future look on the graphic user interface. 
+\item Demonstration of robot stops when move forward and near a wall or obstacle. 
+\end{itemize}
+
+\subsection{Future Goals}
+Chair Yatong Zhou introduced the group goal of the near future..
+\begin{itemize}
+\item Fully developed graphic user interface. 
+\item Robot movement development. Including move forward, backward, turn left, and turn right. 
+\item Buletooth connection from host machine to robot. 
+\item Manual control from GUI.
+\end{itemize}
+
+\subsection{Introduction Summary}
+\begin{itemize}
+\item A advanced requirement have been taken to account: User/Developer Mode change. 
+\item The robot's move speed should be limited to a certain level to ensure accuracy and safety. 
+\end{itemize}
+
+
+\section{Further Requirements Elicitation}
+Client answers the questions about the projects requirements. 
+
+\subsection{Topics About The Walls}
+\begin{itemize}
+\item Walls and obstacles can be considered as same height.
+\item We will be responsible for decide the appearance of the map and objects on the map.
+\item The intensity of obstacles will be decide by the team. 
+\item We will have grids in size of 50mm*50mm and the minimum size of the hidden wall will be 25mm*25mm.
+\end{itemize}
+
+\subsection{Topics About The Working Site}
+\begin{itemize}
+\item The geographical features of the site will be considered flat ground. 
+\item When the "no-go zone" will be not entered anytime. However, when a robot fond itself in a "no-go zone" by accident or condition change of the site. The robot will send a error message to the host machine and stop the operation waiting for rescue.
+\end{itemize}
+
+\subsection{Mode Change}
+\flushleft{\bf{Manual/Auto Mode}}
+: The robot's initial mode will be at auto mode. And if user wish to change it into manual mode, a button will be pressed, then a dialog box appears, when user press the button to confirm. The robot will change to the manual mode.\\
+In manual the default option will be all the sensor will be set to on in order to continue survey.\\
+However, if the user wishes, to switch off the light sensor is optional.\\
+Under any circumstances, all the safety sensor such as ultrasonic sensor and touch sensor will stay on.\\
+
+\flushleft{\bf{User/Developer Mode}}
+: In the daily use of the system, there are options that not suitable and not safe for normal users to choose, which, on the other hand, are useful for developers to debugging and monitoring the system and robot.\\
+We wish the user/developer mode be an advanced requirement which will be implemented in the future.\\
+
+\section{Milestone}
+The milestone will be implementing the GUI, robot movement, Bluetooth connection, and manual control. The priority will be implementing the GUI and robot movement. 
+
+\section{Adjournment}
+The next meeting is a group meeting and will be held in Ingkarni Wardli Building, Room 4.23 at 3:30pm on Monday 20th August 2012.
+
+%%%finally, specifies time of next meeting
+\vspace*{10pt}
+
+
+\end{document}
